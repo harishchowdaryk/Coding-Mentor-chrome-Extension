@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Coding Mentor",
+  "version": "1.0.0",
+  "description": "Your AI coding mentor that provides progressive hints and guidance for competitive programming problems",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "https://leetcode.com/*",
+    "https://codeforces.com/*",
+    "https://www.hackerrank.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://leetcode.com/problems/*",
+        "https://codeforces.com/problemset/problem/*",
+        "https://www.hackerrank.com/challenges/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Coding Mentor"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding Mentor</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 350px;
+      min-height: 400px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #1e293b;
+    }
+    
+    .popup-header {
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .popup-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .popup-subtitle {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    
+    .popup-content {
+      padding: 20px;
+    }
+    
+    .status-section {
+      margin-bottom: 20px;
+    }
+    
+    .status-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .status-item:last-child {
+      border-bottom: none;
+    }
+    
+    .status-label {
+      font-size: 14px;
+      color: #64748b;
+    }
+    
+    .status-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1e293b;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    
+    .stat-card {
+      background: #f8fafc;
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .stat-number {
+      font-size: 24px;
+      font-weight: 600;
+      color: #3b82f6;
+      margin-bottom: 4px;
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .settings-section {
+      margin-bottom: 20px;
+    }
+    
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1e293b;
+    }
+    
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+    }
+    
+    .setting-label {
+      font-size: 14px;
+      color: #64748b;
+    }
+    
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: #cbd5e1;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .toggle-switch.active {
+      background: #3b82f6;
+    }
+    
+    .toggle-slider {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    
+    .toggle-switch.active .toggle-slider {
+      transform: translateX(20px);
+    }
+    
+    .select-wrapper {
+      position: relative;
+    }
+    
+    .popup-select {
+      appearance: none;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 14px;
+      color: #1e293b;
+      cursor: pointer;
+      min-width: 120px;
+    }
+    
+    .popup-select:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    
+    .popup-button {
+      flex: 1;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .popup-button:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+    }
+    
+    .popup-button.secondary {
+      background: #f8fafc;
+      color: #64748b;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .popup-button.secondary:hover {
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+    
+    .progress-section {
+      margin-bottom: 20px;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #059669);
+      transition: width 0.3s ease;
+    }
+    
+    .progress-text {
+      font-size: 12px;
+      color: #64748b;
+      text-align: center;
+    }
+    
+    .footer {
+      padding: 16px 20px;
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+    }
+    
+    .footer-text {
+      font-size: 12px;
+      color: #64748b;
+    }
+    
+    .footer-link {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup-header">
+    <div class="popup-title">🧠 Coding Mentor</div>
+    <div class="popup-subtitle">Your AI Programming Guide</div>
+  </div>
+  
+  <div class="popup-content">
+    <div class="status-section">
+      <div class="status-item">
+        <span class="status-label">Current Platform</span>
+        <span class="status-value" id="current-platform">Not Detected</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">Active Problem</span>
+        <span class="status-value" id="active-problem">None</span>
+      </div>
+    </div>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" id="total-hints">0</div>
+        <div class="stat-label">Hints Used Today</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="problems-solved">0</div>
+        <div class="stat-label">Problems Solved</div>
+      </div>
+    </div>
+    
+    <div class="progress-section">
+      <div class="section-title">Learning Progress</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="learning-progress" style="width: 0%"></div>
+      </div>
+      <div class="progress-text" id="progress-text">Keep going! You're making great progress.</div>
+    </div>
+    
+    <div class="settings-section">
+      <div class="section-title">Settings</div>
+      
+      <div class="setting-item">
+        <span class="setting-label">Hint Mode</span>
+        <div class="select-wrapper">
+          <select class="popup-select" id="hint-mode">
+            <option value="click">Click to Reveal</option>
+            <option value="timed">Timed Release</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="setting-item">
+        <span class="setting-label">Notifications</span>
+        <div class="toggle-switch" id="notifications-toggle">
+          <div class="toggle-slider"></div>
+        </div>
+      </div>
+      
+      <div class="setting-item">
+        <span class="setting-label">Track Progress</span>
+        <div class="toggle-switch active" id="progress-toggle">
+          <div class="toggle-slider"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="action-buttons">
+      <button class="popup-button" id="dashboard-btn">Dashboard</button>
+      <button class="popup-button secondary" id="help-btn">Help</button>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <div class="footer-text">
+      Made with ❤️ for better coding •
+      <a href="#" class="footer-link" id="feedback-link">Feedback</a>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

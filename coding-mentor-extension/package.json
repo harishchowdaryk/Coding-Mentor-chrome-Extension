@@ -1,0 +1,34 @@
+{
+  "name": "coding-mentor-extension",
+  "version": "1.0.0",
+  "description": "AI-powered coding mentor Chrome extension for competitive programming",
+  "main": "background.js",
+  "scripts": {
+    "build": "echo 'Extension built successfully'",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'Linting would go here'",
+    "package": "zip -r coding-mentor-extension.zip . -x '*.git*' 'node_modules/*' '*.log'"
+  },
+  "keywords": [
+    "chrome-extension",
+    "coding",
+    "programming",
+    "leetcode",
+    "codeforces",
+    "hackerrank",
+    "ai",
+    "mentor",
+    "hints",
+    "competitive-programming"
+  ],
+  "author": "Harish Chowdary",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/coding-mentor-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/coding-mentor-extension/issues"
+  },
+  "homepage": "https://github.com/your-username/coding-mentor-extension#readme"
+}
